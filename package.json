@@ -1,6 +1,8 @@
 {
   "name": "dropshiping-app",
   "private": true,
+  "main": "build/server/index.js",
+  "type": "commonjs",
   "scripts": {
     "build": "remix vite:build",
     "dev": "shopify app dev",
@@ -18,7 +20,6 @@
     "graphql-codegen": "graphql-codegen",
     "vite": "vite"
   },
-  "type": "module",
   "engines": {
     "node": "^18.20 || ^20.10 || >=21.0.0"
   },
@@ -29,6 +30,7 @@
     "@remix-run/node": "^2.16.1",
     "@remix-run/react": "^2.16.1",
     "@remix-run/serve": "^2.16.1",
+    "@remix-run/vercel": "^1.19.3",
     "@shopify/app-bridge": "^3.7.10",
     "@shopify/app-bridge-react": "^4.1.6",
     "@shopify/polaris": "^12.0.0",
