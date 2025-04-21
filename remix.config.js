@@ -15,6 +15,8 @@ module.exports = {
   ignoredRouteFiles: ["**/.*"],
   appDirectory: "app",
   serverModuleFormat: "cjs",
+  server: './server.js',
+  serverBuildTarget: 'vercel-serverless',
   dev: { port: process.env.HMR_SERVER_PORT || 8002 },
   future: {},
 };
