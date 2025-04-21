@@ -1,0 +1,37 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "44c605e398e252fbc7fdd0cc5a74d230"
+name = "dropshiping-app"
+handle = "dropshiping-app-2"
+application_url = "https://straight-thousands-acquire-sparc.trycloudflare.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+dev_store_url = "wonsite.myshopify.com"
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2025-04"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,write_orders,read_orders,read_customers,write_customers,read_assigned_fulfillment_orders,write_assigned_fulfillment_orders"
+
+[auth]
+redirect_urls = [
+  "https://straight-thousands-acquire-sparc.trycloudflare.com/auth/callback",
+  "https://straight-thousands-acquire-sparc.trycloudflare.com/auth/shopify/callback",
+  "https://straight-thousands-acquire-sparc.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false
