@@ -5,7 +5,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 installGlobals({ nativeFetch: true });
 
-// Handle Shopify CLI bug with HOST
+// Related: https://github.com/remix-run/remix/issues/2835#issuecomment-1144102176
+// Replace the HOST env var with SHOPIFY_APP_URL so that it doesn't break the remix server. The CLI will eventually
+// stop passing in HOST, so we can remove this workaround after the next major release.
 if (
   process.env.HOST &&
   (!process.env.SHOPIFY_APP_URL ||
@@ -15,11 +17,11 @@ if (
   delete process.env.HOST;
 }
 
-let host = "0.0.0.0"; // Needed for Render or any public host
+const host = new URL(process.env.SHOPIFY_APP_URL || "http://localhost")
+  .hostname;
 let hmrConfig;
 
-if (process.env.SHOPIFY_APP_URL?.includes("localhost")) {
-  host = "localhost";
+if (host === "localhost") {
   hmrConfig = {
     protocol: "ws",
     host: "localhost",
@@ -27,26 +29,24 @@ if (process.env.SHOPIFY_APP_URL?.includes("localhost")) {
     clientPort: 64999,
   };
 } else {
-  const appHostname = new URL(process.env.SHOPIFY_APP_URL || "http://localhost")
-    .hostname;
   hmrConfig = {
     protocol: "wss",
-    host: appHostname,
-    port: parseInt(process.env.FRONTEND_PORT || "8002"),
+    host: host,
+    port: parseInt(process.env.FRONTEND_PORT) || 8002,
     clientPort: 443,
   };
 }
 
 export default defineConfig({
   server: {
-    host,
-    allowedHosts: [".onrender.com"],
+    allowedHosts: [host],
     cors: {
       preflightContinue: true,
     },
     port: Number(process.env.PORT || 3000),
     hmr: hmrConfig,
     fs: {
+      // See https://vitejs.dev/config/server-options.html#server-fs-allow for more information
       allow: ["app", "node_modules"],
     },
   },
