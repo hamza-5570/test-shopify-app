@@ -3,7 +3,7 @@
 client_id = "44c605e398e252fbc7fdd0cc5a74d230"
 name = "dropshiping-app"
 handle = "dropshiping-app-2"
-application_url = "https://investigations-pl-filme-gallery.trycloudflare.com"
+application_url = "https://test-shopify-app-1u93.onrender.com"
 embedded = true
 
 [build]
