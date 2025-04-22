@@ -5,20 +5,14 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 installGlobals({ nativeFetch: true });
 
-// Handle Shopify CLI bug with HOST
-if (
-  process.env.HOST &&
-  (!process.env.SHOPIFY_APP_URL ||
-    process.env.SHOPIFY_APP_URL === process.env.HOST)
-) {
-  process.env.SHOPIFY_APP_URL = process.env.HOST;
-  delete process.env.HOST;
-}
+// Hardcoded URL
+const hardcodedShopifyAppUrl = "https://your-hardcoded-url.onrender.com"; // Replace with your actual URL
 
 let host = "0.0.0.0"; // Needed for Render or any public host
 let hmrConfig;
 
-if (process.env.SHOPIFY_APP_URL?.includes("localhost")) {
+// If the hardcoded URL contains "localhost", use the correct HMR config
+if (hardcodedShopifyAppUrl.includes("localhost")) {
   host = "localhost";
   hmrConfig = {
     protocol: "ws",
@@ -27,8 +21,7 @@ if (process.env.SHOPIFY_APP_URL?.includes("localhost")) {
     clientPort: 64999,
   };
 } else {
-  const appHostname = new URL(process.env.SHOPIFY_APP_URL || "http://localhost")
-    .hostname;
+  const appHostname = new URL(hardcodedShopifyAppUrl).hostname;
   hmrConfig = {
     protocol: "wss",
     host: appHostname,
