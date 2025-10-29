@@ -30,7 +30,7 @@ redirect_urls = [
   "https://thing-beach-shopzilla-identifier.trycloudflare.com/auth/callback",
   "https://thing-beach-shopzilla-identifier.trycloudflare.com/auth/shopify/callback",
   "https://thing-beach-shopzilla-identifier.trycloudflare.com/api/auth/callback",
-  "https://wonport-be.onrender.com/shopifyAccount/callback"
+  "https://wonport-be-jsri.onrender.com/shopifyAccount/callback"
 ]
 
 [pos]
