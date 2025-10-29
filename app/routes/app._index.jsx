@@ -33,7 +33,7 @@ export default function Index() {
     const redirect = Redirect.create(app);
     redirect.dispatch(
       Redirect.Action.REMOTE,
-      `https://wonport-version-2.vercel.app/firstAuthFromShopify?shop=${shop.myshopifyDomain}&email=${shop?.email}&appUrl=${shop.url}`,
+      `https://wonport-version-2.vercel.app/authorize?shop=${shop.myshopifyDomain}&email=${shop?.email}&appUrl=${shop.url}`,
     );
   };
 
