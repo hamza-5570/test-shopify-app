@@ -27,9 +27,6 @@ scopes = "read_assigned_fulfillment_orders,read_customers,read_orders,write_assi
 
 [auth]
 redirect_urls = [
-  "https://thing-beach-shopzilla-identifier.trycloudflare.com/auth/callback",
-  "https://thing-beach-shopzilla-identifier.trycloudflare.com/auth/shopify/callback",
-  "https://thing-beach-shopzilla-identifier.trycloudflare.com/api/auth/callback",
   "https://wonport-be-jsri.onrender.com/shopifyAccount/callback"
 ]
 
