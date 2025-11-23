@@ -28,7 +28,7 @@ scopes = "read_assigned_fulfillment_orders,read_customers,read_orders,write_assi
 [auth]
 redirect_urls = [
   "https://wonport-be-jsri.onrender.com/shopifyAccount/callback",
-  "https://fc295544ef1f.ngrok-free.app/shopifyAccount/callback"
+  "https://165cfc249049.ngrok-free.app/shopifyAccount/callback"
 ]
 
 [pos]
